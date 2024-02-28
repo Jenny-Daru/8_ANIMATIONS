@@ -1,8 +1,8 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
-import { motion } from "framer-motion";
+import { motion, useMotionValue, useTransform } from "framer-motion";
 
-const Wrapper = styled.div`
+const Wrapper = styled(motion.div)`
   height: 100vh;
   width: 100vw;
   display: flex;
@@ -103,10 +103,23 @@ const circleVars = {
 };
 
 function App() {
-  const biggerBoxRef = useRef(null);
+  // const biggerBoxRef = useRef(null);
+  const x = useMotionValue(0);
+  const rotateZ = useTransform(x, [-800, 800], [-360, 360]);
+  const gradient = useTransform(
+    x,
+    [-800, 800],
+    [
+      "linear-gradient(135deg, rgb(102, 183, 233), rgb(51, 74, 206))",
+      "linear-gradient(135deg, rgb(91, 195, 132), rgb(186, 213, 74))",
+    ]
+  );
+  // useEffect(() => {
+  //   x.on("change", () => console.log(x.get()));
+  // }, [x]);
   return (
-    <Wrapper>
-      <Box1 variants={box1Vars} initial="start" animate="end" />
+    <Wrapper style={{ background: gradient }}>
+      {/*       <Box1 variants={box1Vars} initial="start" animate="end" />
       <Box2 variants={box2Vars} initial="start" animate="end">
         <Circle variants={circleVars} />
         <Circle variants={circleVars} />
@@ -123,7 +136,8 @@ function App() {
           whileHover="hover"
           whileTap="click"
         />
-      </BiggerBox>
+      </BiggerBox> */}
+      <Box3 style={{ x, rotateZ }} drag="x" dragSnapToOrigin />
     </Wrapper>
   );
 }
