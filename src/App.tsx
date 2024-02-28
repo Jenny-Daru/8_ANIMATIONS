@@ -1,8 +1,8 @@
-import LayoutAnimation from "./LayoutAnimation";
+import FinalAnimation from "./FinalAnimation";
 
 function App() {
   return (
-    <LayoutAnimation />
+    <FinalAnimation />
   );
 }
 
