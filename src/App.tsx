@@ -1,9 +1,15 @@
 import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
-import { motion, useMotionValue, useTransform } from "framer-motion";
+import {
+  motion,
+  useMotionValue,
+  useScroll,
+  useTransform,
+  useViewportScroll,
+} from "framer-motion";
 
 const Wrapper = styled(motion.div)`
-  height: 100vh;
+  height: 200vh;
   width: 100vw;
   display: flex;
   justify-content: center;
@@ -114,6 +120,8 @@ function App() {
       "linear-gradient(135deg, rgb(91, 195, 132), rgb(186, 213, 74))",
     ]
   );
+  const { scrollYProgress } = useScroll();
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 5]);
   // useEffect(() => {
   //   x.on("change", () => console.log(x.get()));
   // }, [x]);
@@ -137,7 +145,7 @@ function App() {
           whileTap="click"
         />
       </BiggerBox> */}
-      <Box3 style={{ x, rotateZ }} drag="x" dragSnapToOrigin />
+      <Box3 style={{ x, rotateZ, scale }} drag="x" dragSnapToOrigin />
     </Wrapper>
   );
 }
