@@ -1,9 +1,9 @@
-import SliderOne from "./SliderOne";
+import Slider from "./Slider";
 
 
 function App() {
   return (
-    <SliderOne />
+    <Slider />
   );
 }
 
