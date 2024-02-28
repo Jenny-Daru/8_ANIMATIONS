@@ -49,7 +49,7 @@ const boxVars = {
   }),
 };
 
-export default function SliderOne() {
+export default function Slider() {
   const [visible, setVisible] = useState(1);
   const [back, setBack] = useState(false);
   const prevPlease = () => {
