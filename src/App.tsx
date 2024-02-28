@@ -1,9 +1,9 @@
-import Slider from "./Slider";
+import LayoutAnimation from "./LayoutAnimation";
 
 
 function App() {
   return (
-    <Slider />
+    <LayoutAnimation />
   );
 }
 
