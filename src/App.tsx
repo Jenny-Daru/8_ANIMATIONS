@@ -1,9 +1,9 @@
-import AnimatePre from "./AnimatePre";
+import SliderOne from "./SliderOne";
 
 
 function App() {
   return (
-    <AnimatePre />
+    <SliderOne />
   );
 }
 
