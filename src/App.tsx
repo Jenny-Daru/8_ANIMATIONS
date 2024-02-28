@@ -30,6 +30,15 @@ const Box2 = styled(motion.div)`
   box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1), 0 10px 20px rgba(0, 0, 0, 0.06);
 `;
 
+const Box3 = styled(motion.div)`
+  width: 200px;
+  height: 200px;
+  margin: 10px;
+  background-color: white;
+  border-radius: 40px;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1), 0 10px 20px rgba(0, 0, 0, 0.06);
+`;
+
 const Circle = styled(motion.div)`
   background-color: white;
   height: 70px;
@@ -39,12 +48,12 @@ const Circle = styled(motion.div)`
   box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1), 0 10px 20px rgba(0, 0, 0, 0.06);
 `;
 
-const myVars = {
+const box1Vars = {
   start: { scale: 0 },
   end: { scale: 1, rotateZ: 360, transition: { type: "spring", delay: 0.5 } },
 };
 
-const boxVars = {
+const box2Vars = {
   start: {
     opacity: 0,
     scale: 0.5,
@@ -62,6 +71,17 @@ const boxVars = {
   },
 };
 
+const box3Vars = {
+  hover: { scale: 1.5, rotateZ: 90 },
+  click: { scale: 1, borderRadius: "100px" },
+};
+
+const box4Vars = {
+  hover: { scale: 1.5, rotateZ: 90 },
+  click: { scale: 1, borderRadius: "100px" },
+  drag: { backgroundColor: "rgb(46, 204, 100)" },
+};
+
 const circleVars = {
   start: {
     opacity: 0,
@@ -76,13 +96,21 @@ const circleVars = {
 function App() {
   return (
     <Wrapper>
-      <Box1 variants={myVars} initial="start" animate="end" />
-      <Box2 variants={boxVars} initial="start" animate="end">
+      <Box1 variants={box1Vars} initial="start" animate="end" />
+      <Box2 variants={box2Vars} initial="start" animate="end">
         <Circle variants={circleVars} />
         <Circle variants={circleVars} />
         <Circle variants={circleVars} />
         <Circle variants={circleVars} />
       </Box2>
+      <Box3 variants={box3Vars} whileHover="hover" whileTap="click" />
+      <Box3
+        drag
+        variants={box4Vars}
+        whileHover="hover"
+        whileDrag="drag"
+        whileTap="click"
+      />
     </Wrapper>
   );
 }
