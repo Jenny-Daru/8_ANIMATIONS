@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 
@@ -37,6 +37,16 @@ const Box3 = styled(motion.div)`
   background-color: white;
   border-radius: 40px;
   box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1), 0 10px 20px rgba(0, 0, 0, 0.06);
+`;
+
+const BiggerBox = styled.div`
+  width: 450px;
+  height: 450px;
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const Circle = styled(motion.div)`
@@ -79,7 +89,6 @@ const box3Vars = {
 const box4Vars = {
   hover: { scale: 1.5, rotateZ: 90 },
   click: { scale: 1, borderRadius: "100px" },
-  drag: { backgroundColor: "rgb(46, 204, 100)" },
 };
 
 const circleVars = {
@@ -94,6 +103,7 @@ const circleVars = {
 };
 
 function App() {
+  const biggerBoxRef = useRef(null);
   return (
     <Wrapper>
       <Box1 variants={box1Vars} initial="start" animate="end" />
@@ -104,13 +114,16 @@ function App() {
         <Circle variants={circleVars} />
       </Box2>
       <Box3 variants={box3Vars} whileHover="hover" whileTap="click" />
-      <Box3
-        drag
-        variants={box4Vars}
-        whileHover="hover"
-        whileDrag="drag"
-        whileTap="click"
-      />
+      <BiggerBox ref={biggerBoxRef}>
+        <Box3
+          drag
+          dragSnapToOrigin
+          dragConstraints={biggerBoxRef}
+          variants={box4Vars}
+          whileHover="hover"
+          whileTap="click"
+        />
+      </BiggerBox>
     </Wrapper>
   );
 }
